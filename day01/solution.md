@@ -142,6 +142,7 @@ sudo apt update && sudo apt install terraform
 ```
 
 Verify the installation using **terraform — version:**
+
 ![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/0c639c6f-1411-45c3-b301-0d2cd72de68e)
 
 
@@ -193,11 +194,10 @@ Verify the installation using **terraform — version:**
 ```
 ![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/8cb23e3f-1a92-4666-92cc-6dfd082ef50e)
 
-
 **Here you go, our EC2 instance is up and running!**
 
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/2ae2f614-c030-480a-bc61-2af1351564e8)
 
-And, with one single click, you can destroy your whole infrastructure.
 
 6. **Destroy Infrastructure:**
    - Destroying resources is an integral part of Terraform. Deploying consistent and reproducible infrastructure implies that you will be creating and destroying resources when needed.
@@ -207,6 +207,9 @@ And, with one single click, you can destroy your whole infrastructure.
  ```shell
     terraform destroy
 ```
+
+With one single command, you can destroy your whole infrastructure.🤖
+
 ![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/c516eca3-45e1-431c-8f84-8c22278d32a1)
 
 If you recheck the EC2 dashboard, you will see the instance got terminated.
