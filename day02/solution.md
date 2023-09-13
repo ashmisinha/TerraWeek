@@ -5,7 +5,6 @@ Welcome to the 2nd day of #Terraweek challenge, where we will work with the Terr
 -  HCL blocks, parameters, and arguments
 -  Variables, Data Types, and Expressions
 -  Writing Terraform Configurations
--  Testing and Debugging the configuration
 
 ## HCL blocks, parameters, and arguments
 
@@ -130,11 +129,24 @@ variable “tags” {
 ```
 
 ## Writing Terraform Configurations using HCL syntax
-Let’s write a **Terraform configuration using HCL syntax.**
+Let’s write a **Terraform configuration for Docker and AWS using HCL syntax.**
 
-### Adding Required Providers - Docker and AWS (in providers.tf)
+### 1. Docker
+The first step is to install docker on the instance as docker does not comes with terraform else, we will run into below issue.
 
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/de51a5e6-6590-4a38-b3d9-b95c20f3307f)
+
+Also, add the required permission to docker else, you will receive "permission denied" error.
+
+```
+sudo chown $USER /var/run/docker.sock
+```
+
+Before, we begin writting the terraform configuration for Docker, remember that if we follow a standard structure (which is accoridng to the industry standards) and a neat coding style we can avoid confusion and errors. 
+
+**Docker Provider**
 The Docker provider allows you to manage Docker containers and related resources. **To add the Docker provider to your Terraform configuration, you need to include the required_providers block and specify the particular version.**
+We will first add a terraform block and add the provider, usually we write providers in _**terraform.tf**_
 
 ```hcl
 terraform {
@@ -146,26 +158,19 @@ terraform {
   }
 }
 ```
-![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/51019971-7c60-4890-89e9-b71a19aa25de)
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/34829b21-2932-4672-8c45-1709a50cbb42)
 
-
-**AWS Provider:**
-
-The **AWS provide**r is one of the most commonly used providers in Terraform. It allows you to **provision and manage resources in Amazon Web Services (AWS).**
-
-```hcl
-provider "aws" {
-  region = "us-east-1"
-}
-```
-
-**Creating Resources**
-
-Next, we can create resources using HCL syntax. Here is an example of how to create a Docker container:
+Then, we configure the provider that we added in the terraform.tf. This is wriitern in _**providers.tf**_
 
 ```hcl
 provider "docker" {
 }
+```
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/7ce11c1b-5511-459a-99ce-28808c7886eb)
+
+Finally, we write the logic, like here, we want to create an image and create a container out of it **(creating resources)**. Written usually in the **_main.tf_**.
+
+```hcl
 resource "docker_image" "nginx-img" {
         name = "nginx:latest"
         keep_locally = false
@@ -179,14 +184,83 @@ resource "docker_container" "nginxc" {
         }
 }
 ```
-![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/b4f51259-73fe-431f-a84f-d5aee9860c34)
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/45068d32-d13a-498e-bbce-42ee4d5c451d)
 
 We created a Docker container called my-nginxc with the latest version of the nginx image and mapping port 80 to port 80.
 
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/8b50c194-81ee-448e-bfac-47739aeff1ad)
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/f7916cd2-2b91-430e-8abd-d2174e29f0a7)
 
-# Conclusion
 
-In this blog, we’ve covered HCL blocks, parameters, and arguments, different resource types, and written configurations for providers like Docker & AWS. 
+We can also access the nginx using port 80
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/0cccab9a-7e5c-498e-9ea3-6ca9cae1d184)
 
-Happy Terraforming!
+
+### 2. AWS
+
+The first thing we need to do is configure aws:
+```
+aws configure
+```
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/e04ad06b-bfc1-4a84-b155-ea9a9752fa4e)
+
+Once it is done, then we begin writing the configurations using HCL syntax.
+
+_**terraform.tf**_
+
+```hcl
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.16.1"
+    }
+  }
+}
+```
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/24d71a6e-7810-4917-bbcd-1e8c81ac5669)
+
+_**providers.tf**_
+
+```hcl
+provider "aws" {
+  region = "us-east-1"
+}
+```
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/0b0dfd65-e9ab-4dee-9558-a6e9f549574d)
+
+We can create variables, if you do not want to hardcode things and create a template so that it can be resused.
+
+```hcl
+variable "ami_id" {
+default = "ami-053b0d53c279acc90"
+}
+
+variable "instance_type" {
+default = "t2.micro"
+}
+
+variable "instance_count" {
+  type    = number
+  default = 2
+}
+```
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/23ae723a-3da3-4912-ac68-c7dd1660267a)
+
+Next, we can create resources for AWS:
+
+```hcl
+resource "aws_instance" "my_instance" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
+}
+```
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/0c2bf207-38d6-457e-9315-347d80eaeaa6)
+
+
+## Conclusion
+
+In this blog post, we've discussed HCL blocks, parameters, and arguments, explored various resource types, and provided configuration examples for Docker and AWS providers.
+
+Happy Terraforming!👾
 
