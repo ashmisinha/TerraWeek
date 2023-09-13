@@ -257,6 +257,9 @@ resource "aws_instance" "my_instance" {
 ```
 ![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/0c2bf207-38d6-457e-9315-347d80eaeaa6)
 
+We can see the EC2 instance is providioned
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/b23611f7-1002-4a19-8f07-435b265e9b85)
+![image](https://github.com/ashmisinha/TerraWeek/assets/66667107/36568f0b-4482-4eaf-a949-7e0a73cc80cf)
 
 ## Conclusion
 
