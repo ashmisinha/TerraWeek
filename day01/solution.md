@@ -1,12 +1,14 @@
-#Terraweek Challenge: Day 1 - Introduction to Terraform
+# Introduction to Terraform
 
-Hello everyone, It’s my first day of #Terraweek challenge, where we will dive into the basic concepts of Terraform. 🚀
+Hello Everyone! Today marks the beginning of my #Terraweek challenge. Within this blog post, we'll delve into the fundamental notions surrounding Terraform, exploring its definition, significance, and the means by which it operates." We will also see the installation of Terraform and it's configuration for AWS.
 
+## Table of Contents
 -  What is Terraform and how does it revolutionize infrastructure management?
 -  Why do we need it and how does it simplify provisioning?
--  Learn crucial Terraform terminologies with examples.
--  Understand Terraform Lifecycle.
--  Easily install Terraform and configure environments for AWS.
+-  Learn crucial Terraform terminologies with examples
+-  Understand Terraform Workflow
+-  Easily install Terraform and configure environments for AWS
+-  Conclusion
 
 Let’s start with understanding **Infrastructure as Code(IaC).**
 
