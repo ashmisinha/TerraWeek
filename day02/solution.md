@@ -1,10 +1,11 @@
 # Terraform Configuration Language (HCL)
 
-Welcome to the 2nd day of #Terraweek challenge, where we will work with the Terraform Hashicorp Configuration Language (HCL). In this blog, we will understand and work with following concepts:
+Welcome to the 2nd day of #Terraweek challenge, where we will work with the Terraform Hashicorp Configuration Language (HCL). In this blog, we will understand and work with following concepts like, HCL blocks, parameters & arguments. We will also see Variables, Data Types and how to write Terraform configuration with some examples.
 
--  HCL blocks, parameters, and arguments
--  Variables, Data Types, and Expressions
--  Writing Terraform Configurations
+## Table of Contents
+-  [HCL blocks, parameters, and arguments](#hcl-blocks-parameters-and-arguments)
+-  [Variables, Data Types, and Expressions](#variables-data-types-and-expressions)
+-  [Writing Terraform Configurations](#writing-terraform-configurations-using-hcl-syntax)
 
 ## HCL blocks, parameters, and arguments
 
