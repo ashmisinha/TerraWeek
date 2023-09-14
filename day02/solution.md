@@ -6,6 +6,7 @@ Welcome to the 2nd day of #Terraweek challenge, where we will work with the Terr
 -  [HCL blocks, parameters, and arguments](#hcl-blocks-parameters-and-arguments)
 -  [Variables, Data Types, and Expressions](#variables-data-types-and-expressions)
 -  [Writing Terraform Configurations](#writing-terraform-configurations-using-hcl-syntax)
+-  [Conclusion](#conclusion)
 
 ## HCL blocks, parameters, and arguments
 
